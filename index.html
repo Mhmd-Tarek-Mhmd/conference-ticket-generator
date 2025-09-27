@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="assets/images/logo-mark.svg" />
+    <title>Coding Conf 2025 - Ticket Generator</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <!-- Background -->
+    <div aria-hidden="true" class="background">
+      <div class="background-patterns">
+        <div class="pattern-lines"></div>
+        <div class="pattern-circle left"></div>
+        <div class="pattern-squiggly top"></div>
+        <div class="pattern-circle center"></div>
+        <div class="pattern-squiggly bottom"></div>
+      </div>
+    </div>
+
+    <!-- Initial Screen -->
+    <div class="initial-screen | container" id="initialScreen">
+      <header class="header">
+        <img
+          src="assets/images/logo-full.svg"
+          alt="Coding Conf Logo"
+          class="logo"
+        />
+
+        <div class="hero">
+          <h1 class="title">
+            Your Journey to Coding Conf<br />
+            2025 Starts Here!
+          </h1>
+          <p class="subtitle">
+            Secure your spot at next year's biggest coding conference.
+          </p>
+        </div>
+      </header>
+
+      <main class="main">
+        <form novalidate class="form" id="ticketForm">
+          <div class="form-group">
+            <label for="avatar" class="form-label">Upload Avatar</label>
+            <div class="upload-area | form-input">
+              <div class="upload-content">
+                <img
+                  src="assets/images/icon-upload.svg"
+                  alt="Upload Icon"
+                  class="upload-icon"
+                />
+                <p class="upload-text">Drag and drop or click to upload</p>
+              </div>
+              <div class="avatar-preview">
+                <img src="" alt="Avatar Preview" id="avatarPreview" />
+              </div>
+              <div class="avatar-actions">
+                <button
+                  type="button"
+                  class="avatar-btn remove"
+                  id="removeAvatar"
+                >
+                  Remove image
+                </button>
+                <button
+                  type="button"
+                  class="avatar-btn change"
+                  id="changeAvatar"
+                >
+                  Change image
+                </button>
+              </div>
+              <input
+                type="file"
+                id="avatar"
+                name="avatar"
+                accept="image/jpeg,image/png"
+                class="file-input"
+                required
+              />
+            </div>
+            <div class="form-hint">
+              <img
+                aria-hidden="true"
+                class="hint-icon"
+                src="assets/images/icon-info.svg"
+              />
+              <span>Upload your photo (JPG or PNG, max size: 500KB).</span>
+            </div>
+            <p role="alert" class="field-error">
+              <img
+                aria-hidden="true"
+                class="hint-icon"
+                src="assets/images/icon-error.svg"
+              />
+              Please upload a valid image file.
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label for="fullName" class="form-label">Full Name</label>
+            <input
+              required
+              type="text"
+              minlength="2"
+              maxlength="50"
+              id="fullName"
+              name="fullName"
+              class="form-input"
+              autocomplete="name"
+              placeholder="Enter your full name"
+            />
+            <p role="alert" class="field-error">
+              <img
+                aria-hidden="true"
+                class="hint-icon"
+                src="assets/images/icon-error.svg"
+              />
+              Please enter your full name (2-50 characters).
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address</label>
+            <input
+              required
+              id="email"
+              type="email"
+              name="email"
+              class="form-input"
+              autocomplete="email"
+              placeholder="example@email.com"
+            />
+            <p role="alert" class="field-error">
+              <img
+                aria-hidden="true"
+                class="hint-icon"
+                src="assets/images/icon-error.svg"
+              />
+              Please enter a valid email address.
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label for="github" class="form-label">GitHub Username</label>
+            <input
+              required
+              type="text"
+              id="github"
+              name="github"
+              minlength="2"
+              class="form-input"
+              autocomplete="username"
+              placeholder="@yourusername"
+              pattern="^@[a-zA-Z0-9_-]+$"
+            />
+            <p role="alert" class="field-error">
+              <img
+                aria-hidden="true"
+                class="hint-icon"
+                src="assets/images/icon-error.svg"
+              />
+              Please enter a valid GitHub username starting with @.
+            </p>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <span>Generate My Ticket</span>
+          </button>
+
+          <p role="alert" class="error-message">
+            <img
+              aria-hidden="true"
+              class="hint-icon"
+              src="assets/images/icon-error.svg"
+            />
+            Please fix the errors above and try again.
+          </p>
+        </form>
+      </main>
+    </div>
+
+    <!-- Success Screen -->
+    <div hidden class="success-screen | container" id="successScreen">
+      <header class="header">
+        <img
+          src="assets/images/logo-full.svg"
+          alt="Coding Conf Logo"
+          class="logo"
+        />
+        <div class="hero">
+          <h1 class="success-title">
+            Congrats,
+            <span class="success-name" id="successName">Jonatan Kristof!</span>
+          </h1>
+          <h2 class="success-subtitle">Your ticket is ready.</h2>
+          <p class="success-message">
+            We've emailed your ticket to
+            <span class="success-email" id="successEmail"
+              >jonatan@email.com</span
+            >
+            and will send updates in the run up to the event.
+          </p>
+        </div>
+      </header>
+
+      <main>
+        <article class="digital-ticket">
+          <div>
+            <div class="ticket-header">
+              <img
+                src="assets/images/logo-mark.svg"
+                alt="Coding Conf Logo"
+                class="ticket-logo"
+              />
+              <span class="ticket-logo-text">Coding Conf</span>
+            </div>
+            <div class="ticket-details">Jan 31, 2025 / Austin, TX</div>
+          </div>
+          <div class="ticket-attendee">
+            <img
+              src=""
+              alt="Attendee Avatar"
+              class="ticket-avatar"
+              id="ticketAvatar"
+            />
+            <div class="attendee-info">
+              <h3 class="ticket-name" id="ticketName">Jonatan Kristof</h3>
+              <div class="attendee-github">
+                <img
+                  src="assets/images/icon-github.svg"
+                  alt="GitHub"
+                  style="width: 16px; height: 16px"
+                />
+                <span id="ticketGithub">@jonatankristof0101</span>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-number">#01609</div>
+        </article>
+      </main>
+    </div>
+
+    <script src="assets/script.js"></script>
+  </body>
+</html>
